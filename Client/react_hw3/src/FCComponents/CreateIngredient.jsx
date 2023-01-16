@@ -6,7 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import IngredientCard from './IngredientCard';
-import  { MyKitchenContext } from './MyKitchenContext';
+import { MyKitchenContext } from './MyKitchenContext';
 import { getValue } from '@testing-library/user-event/dist/utils';
 
 
@@ -15,13 +15,12 @@ import { getValue } from '@testing-library/user-event/dist/utils';
 const CreateIngredient = () => {
   const [validated, setValidated] = useState(false);
 
-  const {addIngredientToList,newIngredient, setNewIngredient} = useContext(MyKitchenContext)
+  const { addIngredientToList, newIngredient, setNewIngredient } = useContext(MyKitchenContext)
 
 
 
 
   const handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -52,7 +51,11 @@ const CreateIngredient = () => {
 
   return (
     <div>
-      <IngredientCard />
+      <h3 style={{textAlign:"center", padding:"10px"}}>New ingredient</h3>
+      {
+        (newIngredient.name != "" || newIngredient.img != "" || newIngredient.calories != "") ?
+          <IngredientCard /> : ""
+      }
       <ThemeProvider
         breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs"
