@@ -17,7 +17,11 @@ import Image from 'react-bootstrap/Image'
 
 export const RecipeCard = () => {
 
-    const { recipesCreated } = useContext(MyKitchenContext)
+    const { recipesCreated } = useContext(MyKitchenContext);
+
+    const ingredients = recipesCreated.map(recipe => recipe.ingredients.map(ingredient => <li key={ingredient.id}>{ingredient.name}</li>));
+
+
 
     const recipes = recipesCreated.map(recipe =>
         <Carousel.Item key={recipe.id} >
@@ -33,14 +37,14 @@ export const RecipeCard = () => {
                             : ""
                     }
                 </h6>
-                <Card.Img style={{width:"9rem", position: "relative", left: "25%" }}
+                <Card.Img style={{ width: "9rem", position: "relative", left: "25%" }}
                     variant="top"
                     src={recipe.img}
                 // {"https://img.freepik.com/free-photo/fresh-red-tomatoes_2829-13449.jpg?w=2000"}
                 />
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center" }}>{recipe.name}</Card.Title>
-                    <Card.Text tyle={{ textAlign: "center" }}>
+                    <Card.Text style={{ textAlign: "center" }}>
                         {recipe.calories != "" ? "Calories: " : ""}<b>{recipe.calories}</b>
                     </Card.Text>
                     <Card.Text style={{ textAlign: "center" }}>
@@ -48,7 +52,17 @@ export const RecipeCard = () => {
                     </Card.Text>
                 </Card.Body>
                 <Accordion>
-                    <Accordion.Item>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Ingredients</Accordion.Header>
+                        <Accordion.Body>
+                            {
+                                <ul>
+                                  {ingredients}
+                                </ul>
+                            }
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="1">
                         <Accordion.Header>Coocking method</Accordion.Header>
                         <Accordion.Body>
                             {recipe.cMethod}
@@ -61,19 +75,19 @@ export const RecipeCard = () => {
 
 
     return (
-    
-            <div className='ingredientCard'>
-                {recipes.length > 0 ?
-                    <Carousel  variant="dark" style={{ padding: "0px 5px 20px 5px" }}>
-                        {recipes}
-                    </Carousel>
-                    :
-                    ""
-                }
+
+        <div className='ingredientCard'>
+            {recipes.length > 0 ?
+                <Carousel variant="dark" style={{ padding: "0px 5px 20px 5px" }}>
+                    {recipes}
+                </Carousel>
+                :
+                ""
+            }
 
 
-            </div>
-      
+        </div>
+
     )
 }
 

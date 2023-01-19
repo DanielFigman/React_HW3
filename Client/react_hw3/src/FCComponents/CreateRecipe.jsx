@@ -96,7 +96,7 @@ debugger
                     <div style={{ justifyContent: "center", display: "flex" }}>
                         <Form.Group md="4">
                             <div style={{ justifyContent: "center", display: "flex", marginTop: "10px" }}>
-                                <Form.Label>Cooking time:</Form.Label>
+                                <Form.Label>Cooking time in minutes:</Form.Label>
                             </div>
                             <Form.Control
                                 required
