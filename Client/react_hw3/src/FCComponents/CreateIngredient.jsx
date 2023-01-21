@@ -44,13 +44,13 @@ const CreateIngredient = () => {
 
     switch (e.target.id) {
       case "NAME":
-        setNewIngredient({ name: data, img: newIngredient.img, calories: newIngredient.calories })
+        setNewIngredient({ name: data, image: newIngredient.image, calories: newIngredient.calories })
         break;
       case "IMG":
-        setNewIngredient({ name: newIngredient.name, img: data, calories: newIngredient.calories })
+        setNewIngredient({ name: newIngredient.name, image: data, calories: newIngredient.calories })
         break;
       case "CAL":
-        setNewIngredient({ name: newIngredient.name, img: newIngredient.img, calories: data })
+        setNewIngredient({ name: newIngredient.name, image: newIngredient.image, calories: data })
         break;
     }
   }
@@ -59,7 +59,7 @@ const CreateIngredient = () => {
     <div>
       <h3 style={{ textAlign: "center", padding: "10px", marginTop: "20px" }}>New ingredient</h3>
       {
-        (newIngredient.name != "" || newIngredient.img != "" || newIngredient.calories != "") ?
+        (newIngredient.name != "" || newIngredient.image != "" || newIngredient.calories != "") ?
           <IngredientCard /> : ""
       }
       <ThemeProvider
@@ -92,7 +92,7 @@ const CreateIngredient = () => {
                 <Form.Control
                   required
                   id="IMG"
-                  value={newIngredient.img}
+                  value={newIngredient.image}
                   type="text"
                   placeholder="Image URL"
                   onChange={handleChange}

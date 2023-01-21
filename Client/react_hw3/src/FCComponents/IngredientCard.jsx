@@ -8,7 +8,7 @@ import  { MyKitchenContext } from './MyKitchenContext';
 
 const IngredientCard = () => {
    
-    const {newIngredient, setNewIngredient} = useContext(MyKitchenContext)
+    const {newIngredient} = useContext(MyKitchenContext)
 
     return (
         <div className='ingredientCard'>
@@ -18,9 +18,7 @@ const IngredientCard = () => {
                 </h6>
                 <Card.Img style={{ width: '9rem', position:"relative", left:"25%" }}
                     variant="top"
-                    src={newIngredient.img}
-                    
-                    // {"https://img.freepik.com/free-photo/fresh-red-tomatoes_2829-13449.jpg?w=2000"}
+                    src={newIngredient.image}
                 />
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center" }}>{newIngredient.name}</Card.Title>

@@ -19,13 +19,13 @@ export const RecipeCard = () => {
     const { recipesCreated } = useContext(MyKitchenContext);
 
     const ingredients = (recipe) => {
-
-        return (
-            recipe.ingredients.map(ingredient =>
-                <li key={ingredient.id}>
-                    {ingredient.name}
-                </li>)
-        );
+        if (recipe && recipe.ingredients)
+            return (
+                recipe.ingredients.map(ingredient =>
+                    <li key={ingredient.id}>
+                        {ingredient.name}
+                    </li>)
+            );
     }
 
 
@@ -45,8 +45,7 @@ export const RecipeCard = () => {
                 </h6>
                 <Card.Img style={{ width: "9rem", position: "relative", left: "25%" }}
                     variant="top"
-                    src={recipe.img}
-                // {"https://img.freepik.com/free-photo/fresh-red-tomatoes_2829-13449.jpg?w=2000"}
+                    src={recipe.image}
                 />
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center" }}>{recipe.name}</Card.Title>
@@ -54,7 +53,7 @@ export const RecipeCard = () => {
                         {recipe.calories != "" ? "Calories: " : ""}<b>{recipe.calories}</b>
                     </Card.Text>
                     <Card.Text style={{ textAlign: "center" }}>
-                        Coocking time: <b>{recipe.cTime}</b> min
+                        Coocking time: <b>{recipe.time}</b> min
                     </Card.Text>
                 </Card.Body>
                 <Accordion>
@@ -71,7 +70,7 @@ export const RecipeCard = () => {
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Coocking method</Accordion.Header>
                         <Accordion.Body>
-                            {recipe.cMethod}
+                            {recipe.cookingMethod}
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
@@ -81,18 +80,18 @@ export const RecipeCard = () => {
 
 
     return (
-        recipesCreated.length == 0 ? <NoRecipe/> :
-        <div className='ingredientCard'>
-            {recipes.length > 0 ?
-                <Carousel variant="dark" style={{ padding: "0px 5px 20px 5px" }}>
-                    {recipes}
-                </Carousel>
-                :
-                ""
-            }
+        recipesCreated.length == 0 ? <NoRecipe /> :
+            <div className='ingredientCard'>
+                {recipes.length > 0 ?
+                    <Carousel variant="dark" style={{ padding: "0px 5px 20px 5px" }}>
+                        {recipes}
+                    </Carousel>
+                    :
+                    ""
+                }
 
 
-        </div>
+            </div>
 
     )
 }

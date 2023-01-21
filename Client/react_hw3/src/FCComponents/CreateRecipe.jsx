@@ -29,7 +29,6 @@ export const CreateRecipe = () => {
 
 
     const handleSubmit = (e) => {
-        debugger
         e.preventDefault();
         const form = e.currentTarget;
 
@@ -57,19 +56,18 @@ export const CreateRecipe = () => {
 
     const handleChange = (e) => {
         const data = e.target.value;
-        debugger
         switch (e.target.id) {
             case "NAME":
-                setCurrentRecipe({ name: data, img: currentRecipe.img, cTime: currentRecipe.cTime, cMethod: currentRecipe.cMethod })
+                setCurrentRecipe({ name: data, image: currentRecipe.image, time: currentRecipe.time, cookingMethod: currentRecipe.cookingMethod })
                 break;
             case "IMG":
-                setCurrentRecipe({ name: currentRecipe.name, img: data, cTime: currentRecipe.cTime, cMethod: currentRecipe.cMethod })
+                setCurrentRecipe({ name: currentRecipe.name, image: data, time: currentRecipe.time, cookingMethod: currentRecipe.cookingMethod })
                 break;
             case "cTime":
-                setCurrentRecipe({ name: currentRecipe.name, img: currentRecipe.img, cTime: data, cMethod: currentRecipe.cMethod })
+                setCurrentRecipe({ name: currentRecipe.name, image: currentRecipe.image, time: data, cookingMethod: currentRecipe.cookingMethod })
                 break;
             case "cMethod":
-                setCurrentRecipe({ name: currentRecipe.name, img: currentRecipe.img, cTime: currentRecipe.cTime, cMethod: data })
+                setCurrentRecipe({ name: currentRecipe.name, image: currentRecipe.image, time: currentRecipe.time, cookingMethod: data })
                 break;
         }
     }
@@ -105,7 +103,7 @@ export const CreateRecipe = () => {
                                 <Form.Control
                                     required
                                     id="IMG"
-                                    value={currentRecipe.img}
+                                    value={currentRecipe.image}
                                     type="text"
                                     placeholder="Image URL"
                                     onChange={handleChange}
@@ -123,7 +121,7 @@ export const CreateRecipe = () => {
                                     id="cTime"
                                     type="number"
                                     min={0}
-                                    value={currentRecipe.cTime}
+                                    value={currentRecipe.time}
                                     placeholder="Cooking time"
                                     onChange={handleChange}
                                 />
@@ -138,7 +136,7 @@ export const CreateRecipe = () => {
                                 <Form.Control as={"textarea"} style={{ height: "100px", display: "grid", width: "210px", whiteSpace: "pre-wrap" }}
                                     required
                                     id="cMethod"
-                                    value={currentRecipe.cMethod}
+                                    value={currentRecipe.cookingMethod}
                                     placeholder="Wrtie here the cooking method"
                                     onChange={handleChange}
                                 />
