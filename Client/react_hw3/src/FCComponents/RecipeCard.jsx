@@ -4,8 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import { MyKitchenContext } from './MyKitchenContext';
 import Carousel from 'react-bootstrap/Carousel';
-import ThemeProvider from 'react-bootstrap/ThemeProvider'
-import Image from 'react-bootstrap/Image'
+import NoRecipe from './NoRecipeAlert';
 
 
 
@@ -19,13 +18,20 @@ export const RecipeCard = () => {
 
     const { recipesCreated } = useContext(MyKitchenContext);
 
-    const ingredients = recipesCreated.map(recipe => recipe.ingredients.map(ingredient => <li key={ingredient.id}>{ingredient.name}</li>));
+    const ingredients = (recipe) => {
 
+        return (
+            recipe.ingredients.map(ingredient =>
+                <li key={ingredient.id}>
+                    {ingredient.name}
+                </li>)
+        );
+    }
 
 
     const recipes = recipesCreated.map(recipe =>
         <Carousel.Item key={recipe.id} >
-            <Card style={{ width: '18rem', marginTop: "10px", border: "solid" }}>
+            <Card style={{ width: '18rem', marginTop: "30px", border: "solid" }}>
                 <h6>
                     {
                         recipesCreated.length == recipe.id ?
@@ -57,7 +63,7 @@ export const RecipeCard = () => {
                         <Accordion.Body>
                             {
                                 <ul>
-                                  {ingredients}
+                                    {ingredients(recipe)}
                                 </ul>
                             }
                         </Accordion.Body>
@@ -75,7 +81,7 @@ export const RecipeCard = () => {
 
 
     return (
-
+        recipesCreated.length == 0 ? <NoRecipe/> :
         <div className='ingredientCard'>
             {recipes.length > 0 ?
                 <Carousel variant="dark" style={{ padding: "0px 5px 20px 5px" }}>

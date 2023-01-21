@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import  { MyKitchenContext } from './MyKitchenContext';
-import Carousel from 'react-bootstrap/Carousel';
 
 
 

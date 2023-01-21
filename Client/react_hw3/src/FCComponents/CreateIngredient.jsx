@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,11 +13,15 @@ import { getValue } from '@testing-library/user-event/dist/utils';
 
 
 const CreateIngredient = () => {
+
   const [validated, setValidated] = useState(false);
+  const { addIngredientToList, newIngredient, setNewIngredient,ingredientList} = useContext(MyKitchenContext)
 
-  const { addIngredientToList, newIngredient, setNewIngredient } = useContext(MyKitchenContext)
 
+  useEffect(() => {
+    setValidated(false)
 
+  }, [ingredientList])
 
 
   const handleSubmit = (e) => {
@@ -26,10 +30,12 @@ const CreateIngredient = () => {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     }
+    else
+      addIngredientToList(newIngredient);
+
 
 
     setValidated(true);
-    addIngredientToList(newIngredient);
 
   };
 
@@ -51,7 +57,7 @@ const CreateIngredient = () => {
 
   return (
     <div>
-      <h3 style={{textAlign:"center", padding:"10px"}}>New ingredient</h3>
+      <h3 style={{ textAlign: "center", padding: "10px", marginTop: "20px" }}>New ingredient</h3>
       {
         (newIngredient.name != "" || newIngredient.img != "" || newIngredient.calories != "") ?
           <IngredientCard /> : ""
@@ -70,6 +76,7 @@ const CreateIngredient = () => {
                 <Form.Control
                   required
                   id="NAME"
+                  value={newIngredient.name}
                   type="text"
                   placeholder="Ingredient name"
                   onChange={handleChange}
@@ -85,6 +92,7 @@ const CreateIngredient = () => {
                 <Form.Control
                   required
                   id="IMG"
+                  value={newIngredient.img}
                   type="text"
                   placeholder="Image URL"
                   onChange={handleChange}
@@ -100,7 +108,9 @@ const CreateIngredient = () => {
                 <Form.Control
                   required
                   id="CAL"
-                  type="text"
+                  value={newIngredient.calories}
+                  type="number"
+                  min={0}
                   placeholder="Calories"
                   onChange={handleChange}
                 />

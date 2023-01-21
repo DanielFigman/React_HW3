@@ -30,6 +30,7 @@ export default function MyKitchenConextProvider(props) {
         }
         setrecipesCreated([...recipesCreated, newRecipe])
         setaddedIngredients([])
+        setCurrentRecipe({name:"", img:"", cTime:"", cMethod:""})
     }
 
     const addIngredientToList = (ingredient) => {
